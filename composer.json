@@ -1,0 +1,17 @@
+{
+    "name": "user/quase-tudo-gostoso",
+    "authors": [
+        {
+            "name": "skyd3ath",
+            "email": "skyd3ath@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    }
+}
