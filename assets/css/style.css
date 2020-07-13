@@ -3,11 +3,11 @@
 }
 
 * {
-    outline: none;
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
     word-wrap: break-word;
+    outline: none;
     border: none;
 }
 
@@ -25,10 +25,14 @@ p {
     width: 100%;
 }
 
-.novareceita {
-    font-size: 15px;
+.espacamento {
+    margin-top: 20px;
 }
 
-input[type="text"] {
-    padding: 20px;
+.ck-editor__editable_inline {
+    min-height: 300px;
+}
+
+#divalert {
+    margin-top: 10px;
 }
