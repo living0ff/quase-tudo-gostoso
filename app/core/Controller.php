@@ -14,5 +14,12 @@ class Controller
 
         echo $twig->render($view . '.twig.php', $params);
     }
+
+    protected function showMessage (string $title, string $message) {
+        $this->view('partials/message', [
+            'title' => $title,
+            'message' => $message
+        ]);
+    }
 }
 

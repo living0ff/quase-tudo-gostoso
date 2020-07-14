@@ -13,6 +13,7 @@ $router = [
     'nova' => 'ReceitaController@nova',
     'editar' => 'ReceitaController@editar',
     'ver' => 'ReceitaController@ver',
+    'busca' => 'ReceitaController@busca',
     'insert' => 'ReceitaController@insert',
     'update' => 'ReceitaController@update',
     'delete' => 'ReceitaController@delete'

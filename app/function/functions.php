@@ -19,3 +19,8 @@ function post(string $param, $filter = FILTER_SANITIZE_STRING) {
 function getCurrentDate(string $type = 'Y-m-d H:i:s') {
     return date($type);
 }
+
+function redirect(string $url)
+{
+    header('Location: ' . $url);
+}
