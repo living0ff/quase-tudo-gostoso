@@ -6,7 +6,7 @@ use app\core\Controller;
 
 
 class HomeController extends Controller {
-    public function __construct() 
+    public function __construct()
     {
         
     }

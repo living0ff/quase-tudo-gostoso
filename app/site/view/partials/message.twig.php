@@ -1,19 +1,19 @@
 {% extends 'partials/body.twig.php' %}
-    {% block title %} 
+{% block title %}
 
-    {{title}}
+{{title}}
 
-    {% endblock %}
+{% endblock %}
 
 
 {% block body %}
 <div class="max-width">
 
-<div class="row">
+    <div class="row">
 
-    <h1>{{title}}</h1>
-    <br>
-    <h2>{{message}}</h2>
+        <h1>{{title}}</h1>
+        <br>
+        <h2>{{message}}</h2>
     </div>
 
 </div>

@@ -6,7 +6,8 @@ use app\core\Model;
 
 use app\site\entitie\Receita;
 
-class ReceitaModel {
+class ReceitaModel
+{
     private $pdo;
 
     public function __construct()
@@ -14,7 +15,8 @@ class ReceitaModel {
         $this->pdo = new Model();
     }
 
-    public function insert(Receita $receita) {
+    public function insert(Receita $receita)
+    {
         $sql = 'INSERT INTO receita (titulo, conteudo, thumb, tags, data_publicacao) VALUES(:titulo, :conteudo, :thumb, :tags, :data_publicacao)';
 
         $params = [
@@ -26,12 +28,13 @@ class ReceitaModel {
         ];
 
         if (!$this->pdo->ExecuteNonQuery($sql, $params))
-        return -1;
+            return -1;
 
-    return $this->pdo->GetLastID();
+        return $this->pdo->GetLastID();
     }
 
-    public function update(Receita $receita) {
+    public function update(Receita $receita)
+    {
         $sql = 'UPDATE receita SET titulo = :titulo, conteudo = :conteudo, tags = :tags WHERE id = :id';
 
         $params = [
@@ -41,42 +44,43 @@ class ReceitaModel {
             ':tags' => $receita->getTags()
         ];
 
-       return $this->pdo->ExecuteNonQuery($sql, $params);
+        return $this->pdo->ExecuteNonQuery($sql, $params);
     }
 
-    public function readById(int $id) {
+    public function readById(int $id)
+    {
         $sql = 'SELECT * FROM receita WHERE id = :id';
         $param = [
             ':id' => $id
         ];
 
-       return $this->collection(
+        return $this->collection(
             $this->pdo->ExecuteQueryOneRow($sql, $param)
         );
     }
 
-    public function readByTerm(string $termo) {
+    public function readByTerm(string $termo)
+    {
 
         $termo = strtolower($termo);
 
         $sql = 'SELECT id, titulo, data_publicacao FROM receita WHERE LOWER(tags) LIKE :tags OR LOWER(titulo) LIKE :titulo';
         $params = [
-            ':tags' => "%($termo)%",
-            ':titulo' => "%($termo)%"
+            ':tags' => "%{$termo}%",
+            ':titulo' => "%{$termo}%"
         ];
 
         $dt = $this->pdo->ExecuteQuery($sql, $params);
-        $list = []; 
+        $list = [];
 
 
-        foreach($dt as $dr) {
+        foreach ($dt as $dr)
             $list[] = $this->collection($dr);
-            
-            return $list;
-        }
+        return $list;
     }
 
-    private function collection($param) {
+    private function collection($param)
+    {
         return new Receita(
             $param['id'] ?? null,
             $param['titulo'] ?? null,
