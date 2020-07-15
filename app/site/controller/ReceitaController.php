@@ -21,7 +21,28 @@ class ReceitaController extends Controller
     }
     public function ver()
     {
-        $this->view('receita/ver', []);
+
+        $id = get('id');
+
+        if ($id < 1) {
+            $this->showMessage('Receita inválida.', 'A receita que você procura não foi encontrada.');
+            return;
+        }
+
+        $receita = $this->receitaModel->readById($id);
+
+        if ($receita === null || $receita->getId() === null) {
+            $this->showMessage('Receita inválida.', 'A receita que você procura não foi encontrada.');
+            return;
+        }
+
+        $tags = explode(',', $receita->getTags());
+
+        $this->view('receita/ver', [
+            'receita' => $receita,
+            'tags' => $tags,
+            'id' => $id
+        ]);
     }
 
     public function busca()

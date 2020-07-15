@@ -2,7 +2,7 @@
 {% block title %} - Resultado da Busca {% endblock %}
 
 {% block body %}
-<div class="max-width espacamento">
+<div class="max-width mt-3">
     <h1>Resultado da Busca</h1>
 
     <hr>
@@ -16,7 +16,7 @@
             <div class="card border-info mb-3" style="max-width: 20rem;">
                 <div class="card-header" style="width:100%;">{{item.titulo}}</div>
                 <div class="card-body">
-                    <p class="card-text"></p>
+                    <p class="card-text">{{item.dataPublicacao | date(DATE_TIME) }}</p>
                     <a href="{{BASE}}?url=ver&id={{item.id}}" class="btn btn-outline-info w-100">Visualizar</a>
                 </div>
             </div>
