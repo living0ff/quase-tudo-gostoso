@@ -1,25 +1,23 @@
-const frmBusca = document.getElementById('frmBusca');
+const frmBusca = document.getElementById("frmBusca");
 
-if(frmBusca != null || typeof frmBusca != 'undefined') {
-    frmBusca.addEventListener('submit', (event) => {
+if (frmBusca != null || typeof frmBusca != "undefined") {
+  frmBusca.addEventListener("submit", (event) => {
+    let txtBusca = document.getElementById("txtTermoBusca");
 
-        let txtBusca = document.getElementById('txtTermoBusca');
+    if (typeof txtBusca == "undefined") {
+      event.preventDefault();
+      return;
+    }
 
-        if(typeof txtBusca == 'undefined') {
-            event.preventDefault();
-            return;
-        }
+    if (txtBusca.value.length <= 2) {
+      alert("Informe um termo de busca correto.");
+      event.preventDefault();
+    }
 
-        if(txtBusca.value.length <=2) {
-            alert('Informe um termo de busca correto.');
-            event.preventDefault();
-        }
+    let action = frmBusca.action + "&termo=" + txtBusca.value;
 
-        let action = frmBusca.action + "&termo=" + txtBusca.value;
+    location.href = action;
 
-        location.href = action;
-
-        event.preventDefault();
-
-    });
+    event.preventDefault();
+  });
 }

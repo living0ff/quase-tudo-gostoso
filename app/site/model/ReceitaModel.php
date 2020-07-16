@@ -47,6 +47,16 @@ class ReceitaModel
         return $this->pdo->ExecuteNonQuery($sql, $params);
     }
 
+    public function delete(int $id)
+    {
+        $sql = 'DELETE FROM receita WHERE id = :id';
+        $params = [
+            ':id' => $id
+        ];
+
+        return $this->pdo->ExecuteNonQuery($sql, $params);
+    }
+
     public function readById(int $id)
     {
         $sql = 'SELECT * FROM receita WHERE id = :id';
@@ -79,13 +89,30 @@ class ReceitaModel
         return $list;
     }
 
+    public function readLasts(int $quantidade = 20)
+    {
+
+        $sql = 'SELECT id, titulo, data_publicacao, thumb FROM receita ORDER BY data_publicacao DESC LIMIT :limit';
+        $params = [
+            ':limit' => $quantidade
+        ];
+
+        $dt = $this->pdo->ExecuteQuery($sql, $params);
+        $list = [];
+
+
+        foreach ($dt as $dr)
+            $list[] = $this->collection($dr);
+        return $list;
+    }
+
     private function collection($param)
     {
         return new Receita(
             $param['id'] ?? null,
             $param['titulo'] ?? null,
-            html_entity_decode($param['conteudo'] ?? null),
-            $param['thumb'] ?? null,
+            trataImagem(html_entity_decode($param['conteudo'] ?? null)),
+            ($param['thumb'] ?? null),
             $param['tags'] ?? null,
             $param['data_publicacao'] ?? null
         );

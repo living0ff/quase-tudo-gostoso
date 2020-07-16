@@ -7,13 +7,19 @@
 <div class="max-width espacamento">
     <h1 style="color: black;">Nova Receita</h1>
     <hr>
-    <form action="{{BASE}}?url=insert" method="post" id="frmNovaReceita">
+    <form action="{{BASE}}?url=insert" method="post" id="frmNovaReceita" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="txtTitulo">Título</label>
                 <input type="text" class="form-control" id="txtTitulo" name="txtTitulo">
             </div>
             <div class="col-md-6">
+                <label for="txtThumb">Thumb</label>
+                <div style="display: flex;">
+                    <input type="file" class="form-control-file" id="txtThumb" name="arquivo" accept="image/*">
+                </div>
+            </div>
+            <div class=" col-md-6">
                 <label for="txtConteudo">Tags</label>
                 <input type="text" class="form-control" id="txtTags" name="txtTags">
             </div>

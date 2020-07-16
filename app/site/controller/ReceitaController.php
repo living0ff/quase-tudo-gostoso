@@ -21,8 +21,7 @@ class ReceitaController extends Controller
     }
     public function ver()
     {
-
-        $id = get('id');
+        $id = get('id', FILTER_SANITIZE_NUMBER_INT);
 
         if ($id < 1) {
             $this->showMessage('Receita inválida.', 'A receita que você procura não foi encontrada.');
@@ -43,6 +42,18 @@ class ReceitaController extends Controller
             'tags' => $tags,
             'id' => $id
         ]);
+    }
+
+    public function delete()
+    {
+        $id = get('id', FILTER_SANITIZE_NUMBER_INT);
+
+        if (!$this->receitaModel->delete($id)) {
+            $this->showMessage('Erro', 'Erro ao tentar deletar, tente novamente mais tarde.');
+            return;
+        }
+
+        redirect(BASE);
     }
 
     public function busca()
@@ -66,7 +77,7 @@ class ReceitaController extends Controller
     public function editar()
     {
 
-        $id = get('id');
+        $id = get('id', FILTER_SANITIZE_NUMBER_INT);
 
 
         $this->view('receita/editar', [
@@ -113,7 +124,7 @@ class ReceitaController extends Controller
             get('id'),
             post('txtTitulo'),
             post('txtConteudo', FILTER_SANITIZE_SPECIAL_CHARS),
-            null,
+            post('thumb'),
             post('txtTags'),
             getCurrentDate()
         );

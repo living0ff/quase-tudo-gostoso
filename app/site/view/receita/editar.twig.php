@@ -9,10 +9,14 @@
     <hr>
     <form action="{{BASE}}?url=update&id={{receita.id}}" method="post" id="frmNovaReceita">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="txtTitulo">Título</label>
                 <input type="hidden" id="txtId" name="txtId" value="{{receita.id}}">
                 <input type="text" class="form-control" id="txtTitulo" name="txtTitulo" value="{{receita.titulo}}">
+            </div>
+            <div class="col-md-6">
+                <label for="txtThumb">Thumb</label>
+                <input type="file" class="form-control-file" id="txtThumb" name="arquivo" accept="image/*">
             </div>
             <div class="col-md-6">
                 <label for="txtConteudo">Tags</label>
