@@ -1,2 +1,2 @@
 # quase-tudo-gostoso
-site de receita pro bootcamp de desenvolvimento web do satellasoft
+satellasoft web development bootcamp - recipe site
